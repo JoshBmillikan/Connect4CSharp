@@ -65,9 +65,9 @@ namespace Connect4CSharp {
             // 
             // BoardPanel
             // 
-            this.BoardPanel.Location = new System.Drawing.Point(159, 82);
+            this.BoardPanel.Location = new System.Drawing.Point(143, 82);
             this.BoardPanel.Name = "BoardPanel";
-            this.BoardPanel.Size = new System.Drawing.Size(457, 309);
+            this.BoardPanel.Size = new System.Drawing.Size(526, 314);
             this.BoardPanel.TabIndex = 2;
             // 
             // GameForm

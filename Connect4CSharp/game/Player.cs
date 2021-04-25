@@ -13,7 +13,7 @@ namespace Connect4CSharp.game {
         }
 
         public static bool operator ==(Player left, Player right) {
-            return left.Name.Equals(right.Name) && left.Color == right.Color;
+            return left is not null && left.Name.Equals(right?.Name) && left.Color == right?.Color;
         }
 
         public static bool operator !=(Player left, Player right) {
@@ -37,6 +37,9 @@ namespace Connect4CSharp.game {
             }
         }
 
+        public override string ToString() {
+            return Name;
+        }
     }
     public enum PlayerColor : byte {
         None,

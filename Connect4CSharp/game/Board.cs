@@ -39,11 +39,10 @@ namespace Connect4CSharp.game {
             for (var i = Rows - 1; i >= 0; i--) {
                 if (GameBoard[column, i] == PlayerColor.None) {
                     GameBoard[column, i] = CurrentPlayer.Color;
-                    break;
+                    return;
                 }
             }
-
-
+            
             throw new ArgumentOutOfRangeException();
         }
 
@@ -71,7 +70,7 @@ namespace Connect4CSharp.game {
             }
 
             for (var i = 0; i < Columns - 3; i++) {
-                for (var j = Rows; j > 3; j--) {
+                for (var j = Rows-1; j > 3; j--) {
                     var val = GameBoard[i, j];
                     if (val != PlayerColor.None && val == GameBoard[i + 1, j - 1] && val == GameBoard[i + 2, j - 2] &&
                         val == GameBoard[i + 3, j - 3])
