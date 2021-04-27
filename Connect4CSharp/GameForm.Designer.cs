@@ -29,6 +29,8 @@ namespace Connect4CSharp {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CurrentPlayer = new System.Windows.Forms.Label();
             this.BoardPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
@@ -36,7 +38,8 @@ namespace Connect4CSharp {
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.newGameToolStripMenuItem, this.toolStripMenuItem1});
+            this.menuStrip1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.newGameToolStripMenuItem, this.toolStripMenuItem1, this.saveToolStripMenuItem, this.loadToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -48,23 +51,42 @@ namespace Connect4CSharp {
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
             this.newGameToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.newGameToolStripMenuItem.Text = "New Game";
+            this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(42, 20);
             this.toolStripMenuItem1.Text = "Quit";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // CurrentPlayer
             // 
-            this.CurrentPlayer.Location = new System.Drawing.Point(320, 24);
+            this.CurrentPlayer.BackColor = System.Drawing.Color.SlateGray;
+            this.CurrentPlayer.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.CurrentPlayer.Location = new System.Drawing.Point(310, 51);
             this.CurrentPlayer.Name = "CurrentPlayer";
-            this.CurrentPlayer.Size = new System.Drawing.Size(100, 23);
+            this.CurrentPlayer.Size = new System.Drawing.Size(176, 28);
             this.CurrentPlayer.TabIndex = 1;
             this.CurrentPlayer.Text = "Current Player:";
             // 
             // BoardPanel
             // 
+            this.BoardPanel.BackColor = System.Drawing.Color.Silver;
             this.BoardPanel.Location = new System.Drawing.Point(143, 82);
             this.BoardPanel.Name = "BoardPanel";
             this.BoardPanel.Size = new System.Drawing.Size(526, 314);
@@ -74,6 +96,7 @@ namespace Connect4CSharp {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.BoardPanel);
             this.Controls.Add(this.CurrentPlayer);
@@ -86,6 +109,9 @@ namespace Connect4CSharp {
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
 
         private System.Windows.Forms.Panel BoardPanel;
 

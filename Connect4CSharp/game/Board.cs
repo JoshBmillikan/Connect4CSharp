@@ -1,24 +1,26 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Connect4CSharp.game {
-    public partial class Board {
+    
+    /**
+     * The game board class.
+     * Responsible for managing the state of the game
+     */
+    [Serializable]
+    public class Board {
         public const int Columns = 7, Rows = 6;
-
         private readonly Player[] _players = new Player[2];
-
         private uint _turnCount = 0;
-
         public PlayerColor[,] GameBoard { get; private set; }
-
         private bool _win;
-
+        
+        // Property for if the game is won
         public bool Win {
             get => _win || (_win = CheckColumns() || CheckRows() || CheckDiagonal());
             private set => _win = value;
         }
 
+        // Current player is also accessed through a property that hides the access of the players array
         public Player CurrentPlayer {
             get => _players[_turnCount % 2];
             private set => _players[_turnCount % 2] = value;
@@ -35,6 +37,10 @@ namespace Connect4CSharp.game {
             }
         }
 
+        /**
+         * Insert into a column. Throws an exception if
+         * the column is already full
+         */
         public void Insert(int column) {
             for (var i = Rows - 1; i >= 0; i--) {
                 if (GameBoard[column, i] == PlayerColor.None) {
@@ -46,10 +52,16 @@ namespace Connect4CSharp.game {
             throw new ArgumentOutOfRangeException();
         }
 
+        /**
+         * increments the turn count
+         */
         public void NextTurn() {
             _turnCount++;
         }
 
+        /**
+         * Resets the game board
+         */
         public void Reset() {
             Win = false;
             _turnCount = 0;
@@ -59,6 +71,9 @@ namespace Connect4CSharp.game {
             }
         }
 
+        /**
+         * Checks for 4 in a row along the diagonals
+         */
         private bool CheckDiagonal() {
             for (var i = 0; i < Columns - 3; i++) {
                 for (var j = 0; j < Rows - 3; j++) {
@@ -81,6 +96,9 @@ namespace Connect4CSharp.game {
             return false;
         }
 
+        /**
+         * Checks for 4 in a row along the columns
+         */
         private bool CheckColumns() {
             for (var i = 0; i < Columns; i++) {
                 for (var j = 0; j < Rows - 3; j++) {
@@ -94,6 +112,10 @@ namespace Connect4CSharp.game {
             return false;
         }
 
+        
+        /**
+         * Checks for 4 in a row along rows
+         */
         private bool CheckRows() {
             for (var i = 0; i < Columns - 3; i++) {
                 for (var j = 0; j < Rows; j++) {
